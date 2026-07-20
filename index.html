@@ -31,8 +31,8 @@ h1,h2,h3,.serif{font-family:'Bodoni Moda',serif}
   display:flex;align-items:center;justify-content:space-between;
 }
 .nav-brand{text-decoration:none;display:flex;align-items:center;gap:6px;line-height:1}
-.nav-wit{font-family:'Instrument Sans',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink2);display:block;line-height:1}
-.nav-vel{font-family:'Shrikhand',serif;font-size:17px;font-style:italic;color:var(--gold);line-height:1;display:block;-webkit-text-stroke:0.5px var(--gold);text-shadow:1px 1px 0 #FFF8EE,2px 2px 0 #FAF0D8}
+.nav-wit{font-family:'Instrument Sans',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink2);display:block;line-height:1}
+.nav-vel{font-family:'Shrikhand',serif;font-size:20px;font-style:italic;color:var(--gold);line-height:1;display:block;-webkit-text-stroke:0.5px var(--gold);text-shadow:1px 1px 0 #FFF8EE,2px 2px 0 #FAF0D8}
 .nav-brand span{color:var(--gold);font-style:normal}
 .nav-links{display:flex;gap:32px;align-items:center}
 .nav-link{font-size:13px;color:var(--ink2);cursor:pointer;text-decoration:none;letter-spacing:0.02em;transition:color .15s}
@@ -43,7 +43,7 @@ h1,h2,h3,.serif{font-family:'Bodoni Moda',serif}
 /* HERO */
 .hero{
   display:grid;grid-template-columns:1fr 1fr;
-  min-height:92vh;max-height:800px;
+  min-height:84vh;max-height:720px;
   background:var(--ink);
   overflow:hidden;
 }
@@ -170,7 +170,7 @@ h1,h2,h3,.serif{font-family:'Bodoni Moda',serif}
 }
 
 /* FOUNDER */
-.founder-wrap{background:var(--bg);padding:32px 28px 80px}
+.founder-wrap{background:var(--bg);padding:48px 28px}
 #how-its-made{background:var(--bg3);padding-top:36px;padding-bottom:36px}
 .founder-split{display:grid;grid-template-columns:1fr 1fr;max-width:1120px;margin:0 auto;background:var(--white);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
 .founder-img img{width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block}
@@ -330,7 +330,7 @@ footer{background:var(--ink);padding:52px 28px 32px}
 </div>
 
 <!-- COLLECTION -->
-<section class="section" id="products" style="padding-top:48px">
+<section class="section" id="products" style="padding-top:48px;padding-bottom:48px">
   <div class="container">
     <div class="mosaic">
       <div class="mosaic-tile mosaic-title" style="grid-area:title">
@@ -399,7 +399,7 @@ footer{background:var(--ink);padding:52px 28px 32px}
 
 <section class="section" id="how-its-made">
   <div class="container">
-    <div class="section-hd" style="text-align:center;margin-top:56px">
+    <div class="section-hd" style="text-align:center">
       <div class="retro-label" style="justify-content:center">How it's made</div>
       <h2 class="section-title">Small batches. <em>Real ingredients.</em></h2>
     </div>
@@ -469,11 +469,12 @@ footer{background:var(--ink);padding:52px 28px 32px}
       <p class="section-sub">Ask about orders, products, ingredients – anything. I'm here!</p>
     </div>
     <div class="form-grid">
-      <div class="frow"><label>Name</label><input type="text" placeholder="Your name"></div>
-      <div class="frow"><label>Email or phone</label><input type="text" placeholder="How to reach you"></div>
+      <div class="frow"><label>Name</label><input type="text" id="ctName" placeholder="Your name"></div>
+      <div class="frow"><label>Email or phone</label><input type="text" id="ctContact" placeholder="How to reach you"></div>
     </div>
-    <div class="frow"><label>Your message</label><textarea placeholder="What's on your mind?"></textarea></div>
-    <button class="sub-btn" style="max-width:300px" onclick="submitForm('ctConfirm')">Send Message</button>
+    <div class="frow"><label>Your message</label><textarea id="ctMsg" placeholder="What's on your mind?"></textarea></div>
+    <p id="ctError" style="display:none;color:var(--pink);font-size:12px;font-weight:600;margin-top:-6px;margin-bottom:10px"></p>
+    <button class="sub-btn" style="max-width:300px" onclick="submitContact()">Send Message</button>
     <div class="confirm" id="ctConfirm" style="max-width:500px">
       <div class="cfm-title">✦ Message received! ✦</div>
       <p class="cfm-txt">I'll get back to you as soon as I can.</p>
@@ -512,17 +513,20 @@ footer{background:var(--ink);padding:52px 28px 32px}
     <button class="modal-close" onclick="closeModalBtn('updatesOverlay')">✕</button>
     <div class="modal-title">Get Early Access</div>
     <p class="modal-sub">New scents, restocks, and seasonal drops – you'll hear first.</p>
-    <div class="frow"><label>Name</label><input type="text" placeholder="Your name"></div>
-    <div class="frow"><label>Email</label><input type="email" placeholder="your@email.com"></div>
-    <div class="frow"><label>Phone</label><input type="tel" placeholder="(414) 555-0000"></div>
+    <div class="frow"><label>Name</label><input type="text" id="eaName" placeholder="Your name"></div>
+    <div class="frow"><label>Email</label><input type="email" id="eaEmail" placeholder="your@email.com"></div>
+    <div class="frow"><label>Phone</label><input type="tel" id="eaPhone" placeholder="(414) 555-0000"></div>
+    <p style="font-size:12px;color:var(--ink3);margin:-4px 0 12px;font-style:italic">Please share at least a phone number or an email address.</p>
     <div class="frow"><label>Notify me by</label>
       <div class="check-g">
-        <label class="copt"><input type="checkbox"> Text</label>
-        <label class="copt"><input type="checkbox"> Email</label>
-        <label class="copt"><input type="checkbox"> Both</label>
+        <label class="copt"><input type="checkbox" id="eaText"> Text</label>
+        <label class="copt"><input type="checkbox" id="eaEmailCb"> Email</label>
+        <label class="copt"><input type="checkbox" id="eaBoth"> Both</label>
       </div>
+      <p style="font-size:12px;color:var(--ink3);margin-top:8px;font-style:italic">Choose text or email – at least one is required.</p>
     </div>
-    <button class="sub-btn" onclick="submitForm('updConfirm')">Sign Me Up</button>
+    <p id="eaError" style="display:none;color:var(--pink);font-size:12px;font-weight:600;margin-top:2px"></p>
+    <button class="sub-btn" onclick="submitEarlyAccess()">Sign Me Up</button>
     <div class="confirm" id="updConfirm">
       <div class="cfm-title">✦ You're on the list! ✦</div>
       <p class="cfm-txt">I'll keep you in the loop on all things velvet.</p>
@@ -547,6 +551,71 @@ function submitForm(id){
   const btn=c.previousElementSibling;
   if(btn&&btn.tagName==='BUTTON')btn.style.display='none';
   c.scrollIntoView({behavior:'smooth',block:'center'});
+}
+async function submitEarlyAccess(){
+  const name=document.getElementById('eaName').value.trim();
+  const email=document.getElementById('eaEmail').value.trim();
+  const phone=document.getElementById('eaPhone').value.trim();
+  const wantsText=document.getElementById('eaText').checked;
+  const wantsEmail=document.getElementById('eaEmailCb').checked;
+  const wantsBoth=document.getElementById('eaBoth').checked;
+  const err=document.getElementById('eaError');
+  if(!email&&!phone){
+    err.textContent='Please provide a phone number or email address.';
+    err.style.display='block';
+    return;
+  }
+  if(!wantsText&&!wantsEmail&&!wantsBoth){
+    err.textContent='Please choose how we should reach you – text, email, or both.';
+    err.style.display='block';
+    return;
+  }
+  err.style.display='none';
+  const notify=[wantsText?'Text':'',wantsEmail?'Email':'',wantsBoth?'Both':''].filter(Boolean).join(', ');
+  try{
+    const res=await fetch('https://formspree.io/f/xdaqzyjz',{
+      method:'POST',
+      headers:{'Accept':'application/json','Content-Type':'application/json'},
+      body:JSON.stringify({formType:'Early Access Signup',name:name,email:email,phone:phone,notifyBy:notify})
+    });
+    if(res.ok){
+      submitForm('updConfirm');
+    }else{
+      err.textContent='Something went wrong sending this – please try again in a moment.';
+      err.style.display='block';
+    }
+  }catch(e){
+    err.textContent='Something went wrong sending this – please try again in a moment.';
+    err.style.display='block';
+  }
+}
+async function submitContact(){
+  const name=document.getElementById('ctName').value.trim();
+  const contact=document.getElementById('ctContact').value.trim();
+  const msg=document.getElementById('ctMsg').value.trim();
+  const err=document.getElementById('ctError');
+  if(!contact){
+    err.textContent='Please provide an email or phone number so I can get back to you.';
+    err.style.display='block';
+    return;
+  }
+  err.style.display='none';
+  try{
+    const res=await fetch('https://formspree.io/f/xdaqzyjz',{
+      method:'POST',
+      headers:{'Accept':'application/json','Content-Type':'application/json'},
+      body:JSON.stringify({formType:'Website Contact Form',name:name,contact:contact,message:msg})
+    });
+    if(res.ok){
+      submitForm('ctConfirm');
+    }else{
+      err.textContent='Something went wrong sending this – please try again in a moment.';
+      err.style.display='block';
+    }
+  }catch(e){
+    err.textContent='Something went wrong sending this – please try again in a moment.';
+    err.style.display='block';
+  }
 }
 </script>
 </body>
