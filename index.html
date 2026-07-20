@@ -521,8 +521,9 @@ footer{background:var(--ink);padding:52px 28px 32px}
       <div class="check-g">
         <label class="copt"><input type="checkbox" id="eaText"> Text</label>
         <label class="copt"><input type="checkbox" id="eaEmailCb"> Email</label>
-        <label class="copt"><input type="checkbox" id="eaBoth"> Both</label>
+        <label class="copt"><input type="checkbox" id="eaBoth" onchange="onBothToggle()"> Both</label>
       </div>
+      <p id="eaBothHint" style="display:none;font-size:12px;color:var(--rust);margin-top:8px;font-weight:700;letter-spacing:0.01em"></p>
       <p style="font-size:12px;color:var(--gold);margin-top:8px;font-weight:700;letter-spacing:0.01em">Choose text or email – at least one is required.</p>
     </div>
     <p id="eaError" style="display:none;color:var(--pink);font-size:12px;font-weight:600;margin-top:2px"></p>
@@ -557,20 +558,43 @@ function updateEaNotify(){
   const phone=document.getElementById('eaPhone').value.trim();
   const textCb=document.getElementById('eaText');
   const emailCb=document.getElementById('eaEmailCb');
-  const bothCb=document.getElementById('eaBoth');
   textCb.disabled=!phone;
   if(!phone)textCb.checked=false;
   emailCb.disabled=!email;
   if(!email)emailCb.checked=false;
-  bothCb.disabled=!(phone&&email);
-  if(!(phone&&email))bothCb.checked=false;
-  [textCb,emailCb,bothCb].forEach(cb=>{
+  [textCb,emailCb].forEach(cb=>{
     const lbl=cb.closest('.copt');
     if(lbl){
       lbl.style.opacity=cb.disabled?'0.4':'1';
       lbl.style.cursor=cb.disabled?'not-allowed':'pointer';
     }
   });
+  updateBothHint();
+}
+function updateBothHint(){
+  const email=document.getElementById('eaEmail').value.trim();
+  const phone=document.getElementById('eaPhone').value.trim();
+  const bothCb=document.getElementById('eaBoth');
+  const hint=document.getElementById('eaBothHint');
+  if(bothCb.checked&&(!email||!phone)){
+    const missing=[];
+    if(!phone)missing.push('a phone number');
+    if(!email)missing.push('an email address');
+    hint.textContent='To get updates both ways, please also add '+missing.join(' and ')+' above.';
+    hint.style.display='block';
+  }else{
+    hint.style.display='none';
+  }
+}
+function onBothToggle(){
+  updateBothHint();
+  const bothCb=document.getElementById('eaBoth');
+  if(bothCb.checked){
+    const phone=document.getElementById('eaPhone').value.trim();
+    const email=document.getElementById('eaEmail').value.trim();
+    if(!phone){document.getElementById('eaPhone').focus();}
+    else if(!email){document.getElementById('eaEmail').focus();}
+  }
 }
 async function submitEarlyAccess(){
   const name=document.getElementById('eaName').value.trim();
