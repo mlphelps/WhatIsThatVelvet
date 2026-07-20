@@ -198,7 +198,7 @@ h1,h2,h3,.serif{font-family:'Bodoni Moda',serif}
 .radio-g,.check-g{display:flex;flex-direction:column;gap:7px;margin-top:4px}
 .ropt,.copt{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink);cursor:pointer;padding:11px 16px;border:1px solid var(--border);border-radius:3px;background:var(--white);transition:border-color .15s,background .15s;font-weight:300}
 .ropt:hover,.copt:hover{border-color:var(--border-g);background:var(--gold-bg)}
-.ropt input,.copt input{width:auto;accent-color:var(--gold);flex-shrink:0}
+.ropt input,.copt input{width:16px;height:16px;-webkit-appearance:auto;appearance:auto;accent-color:var(--gold);flex-shrink:0;cursor:pointer}
 .slabel{font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin:22px 0 10px;display:flex;align-items:center;gap:8px}
 .slabel::after{content:'';flex:1;height:1px;background:var(--border-g);opacity:0.6}
 .sub-btn{width:100%;padding:16px;margin-top:20px;background:var(--ink);color:var(--gold3);border:none;cursor:pointer;border-radius:var(--r);font-family:'Instrument Sans',sans-serif;font-size:17px;font-weight:700;letter-spacing:0.03em;transition:background .18s,transform .15s}
@@ -516,14 +516,14 @@ footer{background:var(--ink);padding:52px 28px 32px}
     <div class="frow"><label>Name</label><input type="text" id="eaName" placeholder="Your name"></div>
     <div class="frow"><label>Email</label><input type="email" id="eaEmail" placeholder="your@email.com"></div>
     <div class="frow"><label>Phone</label><input type="tel" id="eaPhone" placeholder="(414) 555-0000"></div>
-    <p style="font-size:12px;color:var(--ink3);margin:-4px 0 12px;font-style:italic">Please share at least a phone number or an email address.</p>
+    <p style="font-size:12px;color:var(--gold);margin:-4px 0 12px;font-weight:700;letter-spacing:0.01em">Please share at least a phone number or an email address.</p>
     <div class="frow"><label>Notify me by</label>
       <div class="check-g">
         <label class="copt"><input type="checkbox" id="eaText"> Text</label>
         <label class="copt"><input type="checkbox" id="eaEmailCb"> Email</label>
         <label class="copt"><input type="checkbox" id="eaBoth"> Both</label>
       </div>
-      <p style="font-size:12px;color:var(--ink3);margin-top:8px;font-style:italic">Choose text or email – at least one is required.</p>
+      <p style="font-size:12px;color:var(--gold);margin-top:8px;font-weight:700;letter-spacing:0.01em">Choose text or email – at least one is required.</p>
     </div>
     <p id="eaError" style="display:none;color:var(--pink);font-size:12px;font-weight:600;margin-top:2px"></p>
     <button class="sub-btn" onclick="submitEarlyAccess()">Sign Me Up</button>
